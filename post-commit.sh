@@ -17,13 +17,13 @@ if [[ -z ${full_branch} ]]; then
   exit 0
 fi
 
-git_dir=$(git rev-parse --git-dir)
-if [[ -d ${git_dir}/rebase-apply || -d ${git_dir}/rebase-merge ]]; then
+git_dir=$( git rev-parse --git-dir )
+if [[ -d "${git_dir}/rebase-apply" || -d "${git_dir}/rebase-merge" ]]; then
   # We are in the middle of a merge or rebase
   exit 0
 fi
 
-branch_name=$(basename ${full_branch})
+branch_name=$( basename ${full_branch} )
 
 # Push. Add a `--force-with-lease` if you are prone to rewriting your history.
 git push --repo=${UPSTREAM} ${branch_name}
